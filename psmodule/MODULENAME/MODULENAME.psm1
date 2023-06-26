@@ -1,18 +1,17 @@
-$ProjectRoot = $PSScriptRoot
-$PwshRoot = Join-Path $ProjectRoot 'pwsh'
+$ModuleRoot = $PSScriptRoot
 
 # Load shared functions here
-# . $ProjectRoot\xxx.ps1
+# . $ModuleRoot\xxx.ps1
 
 # Export functions which has the same name as the file
-Get-ChildItem -Path $PwshRoot\*.ps1 -Recurse `
+Get-ChildItem -Path $ModuleRoot\*.ps1 -Recurse `
 | % {
     . $_.FullName;
     Export-ModuleMember -Function $_.BaseName;
 }
 
 # Export aliases if the script file has $Alias
-Get-ChildItem -Path $PwshRoot\*.ps1 -Recurse `
+Get-ChildItem -Path $ModuleRoot\*.ps1 -Recurse `
 | % {
     $Alias = "";
     . $_.FullName;
